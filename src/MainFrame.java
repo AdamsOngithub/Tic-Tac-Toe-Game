@@ -147,7 +147,24 @@ public class MainFrame extends JFrame implements ActionListener{
             oWins(2,4,6);
         }
     }
-    
+    private boolean isDraw(){
+        for(int i=0; i<9; i++){
+            if("".equals(buttons[i].getText())){ 
+                return false;
+            }
+   
+        }return true;
+    }
+
+    private void checkDraw(){
+        if(isDraw()){
+            for(int i=0; i<9; i++){
+            buttons[i].setEnabled(false);
+        }
+        this.add(textPanel,JLabel.CENTER);
+        text.setText("Game is draw");
+       }
+    }
     public void Play(){
         try {
             Thread.sleep(2000);
@@ -175,6 +192,7 @@ public class MainFrame extends JFrame implements ActionListener{
                         isPlayerOne=false;
                         text.setText("O Player Turn");
                         checkWin();
+                        checkDraw();
                     }
                 }
                 else{
@@ -184,6 +202,7 @@ public class MainFrame extends JFrame implements ActionListener{
                         isPlayerOne=true;
                         text.setText("X Player Turn");
                         checkWin();
+                        checkDraw();
                     }
                 }
             }
